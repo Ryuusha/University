@@ -10,14 +10,20 @@ type
   Cjuego = class
   private
     M : array[1..50,1..50] of integer;
-    Nf,Nc : integer;
+    Nf,Nc,bx,by : integer;
       pantX,pantY : integer;
     dimpieza : integer;
+    Bicho : integer;
   public
     constructor crear;
     procedure cargar;
     procedure dibujarpieza(f,c : integer; Pant :  Tcanvas);
-    procedure DibujarPlano(Pant :  Tcanvas);
+    procedure DibujarPlano(Pant : Tcanvas);
+    procedure MoverDerecha(Pant : Tcanvas);
+    procedure MoverIzquierda(Pant : Tcanvas);
+    procedure MoverArriba(Pant : Tcanvas);
+    procedure MoverAbajo(Pant : Tcanvas);
+    function escamino(f,c : integer) : boolean;
 end;
 
 implementation
@@ -28,14 +34,24 @@ implementation
   end;
 
   procedure Cjuego.cargar;
+    procedure llenar(f:integer; s:string);
+    var
+    c : integer;
+    begin
+      for c := 1 to length(s) do
+       M[f,c]:=strtoint(s[c]);
+    end;
   begin
     Nf:=4;
     Nc:=4;
-    M[1,1]:=1; M[1,2]:=1; M[1,3]:=1; M[1,4]:=1;
-    M[2,1]:=1; M[2,2]:=0; M[2,3]:=0; M[2,4]:=1;
-    M[3,1]:=1; M[3,2]:=0; M[3,3]:=0; M[3,4]:=1;
-    M[4,1]:=1; M[4,2]:=1; M[4,3]:=1; M[4,4]:=1;
+    llenar(1,'1111');
+    llenar(2,'1001');
+    llenar(3,'1201');
+    llenar(4,'1111');
+    bx:=2;
+    by:=3;
   end;
+
 
   /// Posx = Cx + (c-1)*tamano
   /// Posy = Cy + (f-1)*tamano
@@ -45,14 +61,25 @@ implementation
   var
     xr,yr : integer;
     cod : integer;
+    figura : tbitmap;
+    archbmp : string;
   begin
     PANTX:=200;
     PANTY:=100;
-    dimpieza:=20;
+    dimpieza:=50;
     xr:= pantx + (c-1)*dimpieza;
     yr:= panty + (f-1)*dimpieza;
     cod:=M[f,c];
-    pant.TextOut(xr,yr,inttostr(cod));
+    figura:= Tbitmap.Create;
+    case cod of
+    2 : archbmp:='C:\Users\Estudiante_2\Desktop/bicho.bmp';
+    1 : archbmp:='C:\Users\Estudiante_2\Desktop/muro.bmp';
+    0 : archbmp:='C:\Users\Estudiante_2\Desktop/piso.bmp';
+    end;
+    figura.LoadFromFile(archbmp);
+    pant.Draw(xr,yr,figura);
+
+    ///pant.TextOut(xr,yr,inttostr(cod));
 
   end;
 
@@ -69,6 +96,60 @@ implementation
       end;
 
 
+  end;
+
+  procedure Cjuego.MoverDerecha(Pant: TCanvas);
+  begin
+
+    if escamino(by,bx+1) then
+    begin
+    M[by,bx]:=camino;
+    dibujarPieza(by,bx,pant);
+    inc(bx);
+    m[by,bx]:=2; //Bicho = 2
+    dibujarPieza(by,bx,pant);
+    end;
+  end;
+
+    procedure Cjuego.MoverIzquierda(Pant: TCanvas);
+  begin
+    if escamino(by,bx-1) then
+    begin
+    M[by,bx]:=camino;
+    dibujarPieza(by,bx,pant);
+    bx:=bx-1;
+    m[by,bx]:=2; //Bicho = 2
+    dibujarPieza(by,bx,pant);
+    end;
+  end;
+
+  procedure Cjuego.MoverArriba(Pant: TCanvas);
+  begin
+    if escamino(by-1,bx) then
+    begin
+    M[by,bx]:=camino;
+    dibujarPieza(by,bx,pant);
+    by:=by-1;
+    m[by,bx]:=2; //Bicho = 2
+    dibujarPieza(by,bx,pant);
+    end;
+  end;
+
+    procedure Cjuego.MoverAbajo(Pant: TCanvas);
+  begin
+    if escamino(by+1,bx) then
+    begin
+    M[by,bx]:=camino;
+    dibujarPieza(by,bx,pant);
+    by:=by+1;
+    m[by,bx]:=2; //Bicho = 2
+    dibujarPieza(by,bx,pant);
+    end;
+  end;
+
+  function Cjuego.escamino(f,c : integer): boolean;
+  begin
+    escamino:=m[f,c] =0;
   end;
 
 end.
