@@ -1,0 +1,31 @@
+program Array10numerosordenados;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+var i,j,a,aux:integer;
+dim:array[1..10]of integer;
+begin
+  for i := 1 to 10 do
+    begin
+      writeln('Digite el valor ',i,':');
+      readln(a);
+      dim[i]:=a;
+    end;
+  for i := 1 to 10-1 do
+    for j := i+1 to 10 do
+      if (dim[i]>dim[j]) then
+      begin
+        aux:=dim[i];
+        dim[i]:=dim[j];
+        dim[j]:=aux;
+      end;
+  for i := 1 to 10 do
+  writeln(dim[i]);
+  readln;
+
+end.
