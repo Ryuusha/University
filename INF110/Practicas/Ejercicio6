@@ -1,0 +1,29 @@
+program Digitar10numerosyoperar;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+var a,sum,res,i:integer;
+    mul:cardinal;
+
+begin
+  sum:=0;
+  res:=0;
+  mul:=1;
+  for i := 1 to 10 do
+    begin
+      writeln('Digite el valor',i,':');
+      readln(a);
+      sum:=sum+a;
+      res:=res-a;
+      mul:=mul*a;
+    end;
+    writeln('El resultado de la suma es:',sum);
+    writeln('El resultado de la resta es:',res);
+    writeln('El resultado del producto es:',mul);
+    readln;
+end.
