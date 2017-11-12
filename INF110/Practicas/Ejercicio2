@@ -1,0 +1,21 @@
+program Arraydel1al100;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+VAR arr_num:ARRAY [1..100] of INTEGER;
+        VAR i:INTEGER;
+BEGIN
+     FOR i:=1 TO 100 DO
+         arr_num[i]:=i;
+
+     FOR i:=1 TO 100 DO
+     BEGIN
+          WRITELN('Numero: ',arr_num[i]);
+     END;
+     readln;
+END.
