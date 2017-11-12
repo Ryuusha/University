@@ -1,0 +1,24 @@
+program ArrayMuestreodeNumerosparesdel1al100;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+var num:integer;
+
+
+BEGIN
+
+     num:=2;
+
+
+     REPEAT
+           writeln(num);
+           num:= num + 2;
+     UNTIL num= 102;
+     readln;
+
+END.
