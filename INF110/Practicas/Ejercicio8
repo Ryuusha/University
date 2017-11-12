@@ -1,0 +1,40 @@
+program Arrayde3vectores;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+var a,i:integer;
+    V1,V2:array[1..5]of integer;
+    V3:array[1..10]of integer;
+begin
+  writeln('Digite los valores del primer vector ');
+  for i:=1 to 5 do
+    begin
+      writeln('Escriba el valor ',i,':');
+      readln(V1[i]);
+    end;
+  writeln('Digite los valores del segundo vector');
+  for i:=1 to 5 do
+    begin
+      writeln('Escriba el valor ',i,':');
+      readln(V2[i]);
+    end;
+  for i:=1 to 5 do
+    begin
+      V3[i]:=V1[i];
+    end;
+  for i:=1 to 5 do
+    begin
+      V3[5+i]:=V1[5+i];
+    end;
+  writeln('El vector resultante de V1 y V2 es el siguiente');
+  for i:=1 to 10 do
+    begin
+      writeln(V3[i]);
+    end;
+  readln;
+end.
