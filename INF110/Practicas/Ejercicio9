@@ -1,0 +1,29 @@
+program Arrayde2vectores;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+var i:integer;
+    V1,V2:array[1..5]of integer;
+begin
+  writeln('Digite los valores del primer vector');
+  for i:=1 to 5 do
+    begin
+      writeln('Escriba el valor ',i,':');
+      readln(V1[i]);
+    end;
+  for i:=1 to 5 do
+    begin
+      V2[i]:=V1[i]*2;
+    end;
+  writeln('El nuevo vector multiplicado por 2 es:');
+  for i:=1 to 5 do
+    begin
+      writeln(V2[i]);
+    end;
+  readln;
+end.
