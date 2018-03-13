@@ -1,0 +1,19 @@
+program Esmayor1;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+var x,y:integer;
+
+begin
+  readln(x);
+  readln(y);
+  if x>y then
+          writeln(x,' Es mayor')
+          else writeln(y,' Es mayor');
+  readln;
+end.
