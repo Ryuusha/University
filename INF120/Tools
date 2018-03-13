@@ -1,0 +1,37 @@
+unit Tools;
+interface
+  procedure leer_dato (var x:integer);
+  function mayor (var N1,N2:integer):integer;
+  procedure mostrar (var y:integer);
+  function es_capicua (var n:integer):boolean;
+implementation
+  procedure leer_dato (var x:integer);
+    begin
+      readln(x);
+    end;
+  procedure mostrar (var y:integer);
+    begin
+      writeln(y);
+    end;
+  function mayor (var N1,N2:integer):integer;
+  var x:integer;
+    begin
+      if N1>N2 then
+                x:=N1
+                else x:=N2;
+      mayor:=x;
+    end;
+  function es_capicua (var n:integer):boolean;
+  var nn,copia:integer;
+    begin
+      nn:=0;
+      copia:=n;
+      while n>0 do
+        begin
+          nn:=(nn*10)+(n mod 10);
+          n:=n div 10;
+        end;
+      es_capicua:=copia=nn;
+    end;
+
+end.
