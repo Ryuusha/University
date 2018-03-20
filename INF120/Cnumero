@@ -1,0 +1,40 @@
+unit SN2;
+
+interface
+type
+Cnumero=Class
+  valor : integer;
+constructor Crear;
+procedure AsignarVal(que:integer);
+function ObtValor:integer;
+function es_capicua:boolean;
+End;
+
+implementation
+constructor Cnumero.Crear;
+begin
+  valor:=0;
+end;
+procedure Cnumero.AsignarVal(que:integer);
+begin
+  valor:=que;
+end;
+function Cnumero.ObtValor:integer;
+begin
+  ObtValor:=valor;
+end;
+function Cnumero.es_capicua:boolean;
+var nn,copia:integer;
+begin
+  nn:=0;
+  copia:=valor;
+  while valor>0 do
+  begin
+    nn:=(nn*10)+(valor mod 10);
+    valor:=valor div 10;
+  end;
+  es_capicua:=copia=nn;
+
+end;
+
+end.
