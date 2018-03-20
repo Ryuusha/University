@@ -1,0 +1,23 @@
+program Project1;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils,
+  TN in 'TN.pas',
+  SN2 in 'SN2.pas';
+
+var
+a:Cnumero; n:integer;
+begin
+  readln(n);
+  a:=Cnumero.Crear;
+  a.AsignarVal(n);
+  writeln(a.ObtValor);
+  if a.es_capicua then
+  writeln('Es capicua')
+  else writeln('No es capicua');
+  readln;
+end.
