@@ -1,0 +1,34 @@
+unit TN;
+
+interface
+type Tnumero=Record
+  valor: integer;
+End;
+procedure AsigValor(var n:Tnumero; que:integer);
+function OrdValor(n:Tnumero):integer;
+function es_capicua:boolean;
+
+implementation
+
+procedure AsigValor(var n:Tnumero; que:integer);
+begin
+  n.valor:=que;
+end;
+function OrdValor(n:Tnumero):integer;
+begin
+  OrdValor:=n.valor;
+end;
+function es_capicua:boolean;
+  var n,nn,copia:integer;
+    begin
+      nn:=0;
+      copia:=n;
+      while n>0 do
+        begin
+          nn:=(nn*10)+(n mod 10);
+          n:=n div 10;
+        end;
+      es_capicua:=copia=nn;
+    end;
+
+end.
