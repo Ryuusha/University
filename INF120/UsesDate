@@ -1,0 +1,35 @@
+program Datos;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+var f:textfile;
+    l:string;
+    i:integer;
+    ci:integer;
+    nombre:string;
+    fecha:integer;
+begin
+  assignfile(f,'D:\MiguelVasquez\Datos.txt');
+  reset(f);
+  while not eof(f) do
+    begin
+      readln(f,l);
+      i:=pos(',',l);
+      ci:=StrToInt(copy(l,1,i-1));
+      delete(l,1,i);
+
+      i:=pos(',',l);
+      nombre:=copy(l,1,i-1);
+      delete(l,1,i);
+      fecha:=StrToInt(l);
+
+      writeln(ci, nombre, fecha);
+    end;
+  closefile(f);
+  readln;
+end.
