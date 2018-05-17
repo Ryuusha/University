@@ -1,0 +1,45 @@
+program DatosConVectores;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+type
+  persona = record
+    ci: integer;
+    nombre:string;
+    fecha:integer;
+  end;
+
+var f:textfile;
+    l:string;
+    i:integer;
+    v:array[1..100] of persona;
+    n:integer;
+begin
+  assignfile(f,'D:\MiguelVasquez\Datos.txt');
+  reset(f);
+  n:=0;
+  while not eof(f) do
+    begin
+      readln(f,l);
+      n:=n+1;
+      i:=pos(',',l);
+      v[n].ci:=StrToInt(copy(l,1,i-1));
+      delete(l,1,i);
+
+      i:=pos(',',l);
+      v[n].nombre:=copy(l,1,i-1);
+      delete(l,1,i);
+      v[n].fecha:=StrToInt(l);
+    end;
+  for i:=1 to n do
+    begin
+      writeln(v[i].ci,' ',v[i].nombre,' ',v[i].fecha);
+    end;
+  closefile(f);
+  readln;
+end.
